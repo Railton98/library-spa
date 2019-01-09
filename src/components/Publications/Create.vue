@@ -11,6 +11,20 @@
 
       <div class="row">
         <div class="input-field col s12 m12 l10">
+          <textarea v-model="publications.short_description" id="short_description" name="short_description" class="materialize-textarea"></textarea>
+          <label for="short_description">Descrição Curta</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 m12 l10">
+          <textarea v-model="publications.full_description" id="full_description" name="full_description" class="materialize-textarea"></textarea>
+          <label for="full_description">Descrição Completa</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12 m12 l10">
           <input v-model="publications.author" id="author" name="author" type="text" class="validate">
           <label for="author">Autor</label>
         </div>

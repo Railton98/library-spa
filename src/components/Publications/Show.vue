@@ -76,4 +76,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h3 {
+  font-weight: normal;
+  color: #42b983;
+}
 </style>

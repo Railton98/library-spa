@@ -1,8 +1,11 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>Library Project</h1>
     <!-- <router-link to="/publications">Listagem</router-link> -->
     <img class="responsive-img" src="http://blogespecializacao.fdc.org.br/wp-content/uploads/2018/06/196198-8-livros-sobre-lideranca-feminina-que-toda-gestora-deve-ler-740x360.jpg" alt="">
+    <br>
+    <br>
+    <br>
   </div>
 </template>
 

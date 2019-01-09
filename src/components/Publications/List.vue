@@ -1,9 +1,11 @@
 <template lang="html">
   <div>
-    <h3>Publicações</h3>
-    <router-link class="btn-floating btn-large waves-effect waves-light red" to="/publications/new">
-      <i class="material-icons">add</i>
-    </router-link>
+    <div class="row">
+      <h3>Publicações</h3>
+      <router-link class="btn waves-effect waves-light right teal" to="/publications/new">
+        Nova Publicação
+      </router-link>
+    </div>
 
     <div class="row">
       <div class="card horizontal teal lighten-4 col s12 m5 l5 offset-m1 offset-l1" v-for="publication in publications" :key="publication.id">
@@ -52,4 +54,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h3 {
+  font-weight: normal;
+  color: #42b983;
+}
 </style>

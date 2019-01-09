@@ -11,7 +11,7 @@
             <a href="#">Login</a>
           </li>
           <li>
-            <a href="#">Cadastrar</a>
+            <a href="#">Cadastrar-se</a>
           </li>
         </ul>
       </div>

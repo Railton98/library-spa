@@ -9,29 +9,20 @@
       <div class="card horizontal teal lighten-4 col s12 m5 l5 offset-m1 offset-l1" v-for="publication in publications" :key="publication.id">
 
         <div class="card-image">
-          <img src="https://lorempixel.com/100/190/nature/6">
+          <img class="responsive-img" src="https://lorempixel.com/180/330/nature/6">
         </div>
 
         <div class="card-stacked">
           <div class="card-content">
-            <li>
-              <b>Título:</b> {{publication.title}}
-            </li>
-            <li>
-              <b>Autor:</b> {{publication.author}}
-            </li>
-            <li>
-              <b>Ano de Publicação:</b> {{publication.publication_year}}
-            </li>
-            <li>
-              <b>Tipo:</b> {{publication.type}}
-            </li>
-            <li>
-              <b>Exemplares:</b> {{publication.count_exemplaries}}
-            </li>
+            <div>
+              <b>{{publication.title}}</b>
+            </div>
+            <div>
+              {{publication.short_description}}
+            </div>
           </div>
           <div class="card-action">
-            <router-link :to="{ name:'PublicationShow', params: { id: publication.id }}">Detalhes</router-link>
+            <router-link class="center-align" :to="{ name:'PublicationShow', params: { id: publication.id }}">Detalhes</router-link>
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <router-link to="/publications">Listagem</router-link>
+    <h1>Library Project</h1>
+    <!-- <router-link to="/publications">Listagem</router-link> -->
+    <img class="responsive-img" src="http://blogespecializacao.fdc.org.br/wp-content/uploads/2018/06/196198-8-livros-sobre-lideranca-feminina-que-toda-gestora-deve-ler-740x360.jpg" alt="">
   </div>
 </template>
 
@@ -9,27 +10,15 @@
 export default {
   name: 'HelloWorld',
   data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+    return {}
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1 {
   font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
   color: #42b983;
 }
 </style>

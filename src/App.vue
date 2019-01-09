@@ -2,11 +2,17 @@
   <div>
     <nav>
       <div class="nav-wrapper blue-grey darken-3">
-        <router-link to="/" class="brand-logo">Logo</router-link>
+        <router-link to="/" class="brand-logo center">Logo</router-link>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><router-link to="/publications">Publicações</router-link></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
+          <li>
+            <router-link to="/publications">Publicações</router-link>
+          </li>
+          <li>
+            <a href="#">Login</a>
+          </li>
+          <li>
+            <a href="#">Cadastrar</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -14,6 +20,10 @@
     <div class="container">
       <router-view/>
     </div>
+
+    <footer class="page-footer blue-grey darken-3 center">
+        © 2019 Copyright <b>Railtton's Teck</b>
+    </footer>
   </div>
 </template>
 
@@ -24,12 +34,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

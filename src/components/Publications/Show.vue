@@ -63,11 +63,21 @@ export default {
   },
   methods: {
     async getPublication (id) {
-      const res = await axios.get(`http://localhost:8080/api/publications/${id}`)
+      let user = JSON.parse(localStorage.getItem('user'))
+      const res = await axios.get(`http://localhost:8080/api/publications/${id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      })
       this.publication = res.data.data // 1º data -> Axios | 2º data -> Laravel
     },
     deletePublication (id) {
-      axios.delete(`http://localhost:8080/api/publications/${id}`).then(res => {
+      let user = JSON.parse(localStorage.getItem('user'))
+      axios.delete(`http://localhost:8080/api/publications/${id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      }).then(res => {
         this.$router.push('/publications')
       })
     }

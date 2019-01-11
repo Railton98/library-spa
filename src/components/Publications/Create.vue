@@ -72,7 +72,12 @@ export default {
   },
   methods: {
     storePublications () {
-      axios.post('http://localhost:8080/api/publications', this.publications).then(res => this.$router.push('/publications'))
+      let user = JSON.parse(localStorage.getItem('user'))
+      axios.post('http://localhost:8080/api/publications', this.publications, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      }).then(res => this.$router.push('/publications'))
     }
   }
 }

@@ -46,7 +46,12 @@ export default {
   },
   methods: {
     async getPublications () {
-      const res = await axios.get('http://localhost:8080/api/publications')
+      let user = JSON.parse(localStorage.getItem('user'))
+      const res = await axios.get('http://localhost:8080/api/publications', {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      })
       this.publications = res.data.data // 1º data -> Axios | 2º data -> Laravel
     }
   }

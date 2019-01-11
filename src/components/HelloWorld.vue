@@ -1,27 +1,74 @@
 <template>
-  <div>
-    <h1>Library Project</h1>
-    <!-- <router-link to="/publications">Listagem</router-link> -->
-    <img class="responsive-img" src="http://blogespecializacao.fdc.org.br/wp-content/uploads/2018/06/196198-8-livros-sobre-lideranca-feminina-que-toda-gestora-deve-ler-740x360.jpg" alt="">
-    <br>
-    <br>
-    <br>
-  </div>
+  <span>
+    <header>
+      <nav-bar-root cor="blue-grey darken-3">
+        <li>
+          <router-link to="/publications">Publicações</router-link>
+        </li>
+        <span v-if="!user">
+          <li><router-link to="/login">Login</router-link></li>
+          <li><router-link to="/register">Cadastrar-se</router-link></li>
+        </span>
+        <li v-if="user"><router-link to="/perfil">{{user.name}}</router-link></li>
+        <li v-if="user"><a @click="sair()">Sair</a></li>
+      </nav-bar-root>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m8 l8">
+          <img class="responsive-img" src="static/img/library.jpg" alt="">
+        </div>
+        <h4>Funcionalidades</h4>
+        <div class="col s12 m4 l4">
+          <li>teste</li>
+          <li>teste</li>
+          <li>teste</li>
+          <li>teste</li>
+        </div>
+      </div>
+    </div>
+    <footer-root />
+  </span>
 </template>
 
 <script>
+import NavBarRoot from '@/components/layouts/NavBarRoot'
+import FooterRoot from '@/components/layouts/FooterRoot'
 export default {
   name: 'HelloWorld',
+  components: {
+    NavBarRoot,
+    FooterRoot
+  },
   data () {
-    return {}
+    return {
+      user: false
+    }
+  },
+  created () {
+    let user = localStorage.getItem('user')
+    if (user) {
+      this.user = JSON.parse(user)
+      this.$router.push('/')
+    }
+  },
+  methods: {
+    sair () {
+      localStorage.clear()
+      this.user = false
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
+h1, h4 {
   font-weight: normal;
   color: #42b983;
+}
+img {
+  height: 76vh;
 }
 </style>

@@ -8,10 +8,10 @@
             <router-link to="/publications">Publicações</router-link>
           </li>
           <li>
-            <a href="#">Login</a>
+            <router-link to="/login">Login</router-link>
           </li>
           <li>
-            <a href="#">Cadastrar-se</a>
+            <router-link to="/register">Cadastrar-se</router-link>
           </li>
         </ul>
       </div>

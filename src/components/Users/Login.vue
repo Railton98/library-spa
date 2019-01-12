@@ -1,18 +1,20 @@
 <template lang="html">
-  <div class="row">
-    <h3>Login</h3>
-    <div class="col s12 m8 l8 img-left">
-      <img class="responsive-img" src="http://blogespecializacao.fdc.org.br/wp-content/uploads/2018/06/196198-8-livros-sobre-lideranca-feminina-que-toda-gestora-deve-ler-740x360.jpg" alt="">
+  <div class="container">
+    <div class="row">
+      <h3>Login</h3>
+      <div class="col s12 m8 l8 img-left">
+        <img class="responsive-img" src="static/img/library.jpg" alt="">
+      </div>
+      <span class="col s12 m4 l4">
+        <form method="post" @submit.prevent="login()">
+          <input type="email" placeholder="E-mail" name="email" v-model="user.email">
+          <input type="password" placeholder="Senha" name="password" v-model="user.password">
+          <button type="submit" class="waves-effect waves-light btn btn">
+            Entrar <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </span>
     </div>
-    <span class="col s12 m4 l4">
-      <form method="post" @submit.prevent="login()">
-        <input type="text" placeholder="E-mail" name="email" v-model="user.email">
-        <input type="password" placeholder="Senha" name="password" v-model="user.password">
-        <button type="submit" class="waves-effect waves-light btn btn">
-          Entrar <i class="material-icons right">send</i>
-        </button>
-      </form>
-    </span>
   </div>
 </template>
 
@@ -58,6 +60,9 @@ export default {
 h3 {
   font-weight: normal;
   color: #42b983;
+}
+img {
+  height: 76vh;
 }
 .img-left {
   margin-bottom: 8%;

@@ -1,5 +1,18 @@
 <template lang="html">
   <nav :class="cor">
+
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+    <ul id="slide-out" class="sidenav hide-on-med-and-up">
+      <li>
+        <router-link :to="url || '/'">
+          <i class="material-icons">cloud</i>{{ logo || 'Library' }}
+        </router-link>
+      </li>
+      <li><div class="divider"></div></li>
+      <slot />
+    </ul>
+
     <div class="nav-wrapper container">
       <router-link :to="url || '/'" class="brand-logo center hide-on-med-and-down">
         {{ logo || 'Library Project' }}

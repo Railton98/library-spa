@@ -9,7 +9,7 @@
           <li><router-link to="/login">Login</router-link></li>
           <li><router-link to="/register">Cadastrar-se</router-link></li>
         </span>
-        <li v-if="user"><router-link to="/perfil">{{user.name}}</router-link></li>
+        <li v-if="user"><a>{{ user.user.name }}</a></li>
         <li v-if="user"><a @click="sair()">Sair</a></li>
       </nav-bar-root>
     </header>
@@ -46,11 +46,10 @@ export default {
       user: false
     }
   },
-  created () {
+  mounted () {
     let user = localStorage.getItem('user')
     if (user) {
       this.user = JSON.parse(user)
-      this.$router.push('/')
     }
   },
   methods: {

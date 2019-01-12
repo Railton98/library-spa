@@ -1,11 +1,11 @@
 <template lang="html">
-  <div class="container">
-    <div class="row">
+  <auth-template>
+    <span slot="principal">
       <h3>Cadastro</h3>
       <div class="col s12 m8 l8 img-left">
         <img class="responsive-img" src="static/img/library.jpg" alt="">
       </div>
-      <span class="col s12 m4 l4">
+      <div class="col s12 m4 l4">
         <form method="post" @submit.prevent="register()">
           <input type="text" placeholder="Nome" name="name" v-model="user.name">
           <input type="text" placeholder="Telefone" name="phone" v-model="user.phone">
@@ -15,16 +15,25 @@
           <button type="submit" class="waves-effect waves-light btn btn">
             Cadastrar <i class="material-icons right">send</i>
           </button>
+          <p>
+            <strong>
+              Já tem conta? <router-link class="waves-effect waves-teal teal lighten-3 btn-flat" to="/login">Faça Login</router-link>
+            </strong>
+          </p>
         </form>
-      </span>
-    </div>
-  </div>
+      </div>
+    </span>
+  </auth-template>
 </template>
 
 <script>
+import AuthTemplate from '@/components/templates/AuthTemplate'
 import axios from 'axios'
 export default {
   name: 'UsersRegister',
+  components: {
+    AuthTemplate
+  },
   data () {
     return {
       user: {}

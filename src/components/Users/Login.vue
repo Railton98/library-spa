@@ -1,27 +1,36 @@
 <template lang="html">
-  <div class="container">
-    <div class="row">
+  <auth-template>
+    <span slot="principal">
       <h3>Login</h3>
       <div class="col s12 m8 l8 img-left">
         <img class="responsive-img" src="static/img/library.jpg" alt="">
       </div>
-      <span class="col s12 m4 l4">
+      <div class="col s12 m4 l4">
         <form method="post" @submit.prevent="login()">
           <input type="email" placeholder="E-mail" name="email" v-model="user.email">
           <input type="password" placeholder="Senha" name="password" v-model="user.password">
           <button type="submit" class="waves-effect waves-light btn btn">
             Entrar <i class="material-icons right">send</i>
           </button>
+          <p>
+            <strong>
+              Não tem conta? <router-link class="waves-effect waves-teal teal lighten-3 btn-flat" to="/register">Cadastre-se</router-link>
+            </strong>
+          </p>
         </form>
-      </span>
-    </div>
-  </div>
+      </div>
+    </span>
+  </auth-template>
 </template>
 
 <script>
+import AuthTemplate from '@/components/templates/AuthTemplate'
 import axios from 'axios'
 export default {
   name: 'UsersLogin',
+  components: {
+    AuthTemplate
+  },
   data () {
     return {
       user: {
@@ -33,19 +42,10 @@ export default {
   methods: {
     login () {
       axios.post('http://localhost:8080/api/auth/login', this.user).then(res => {
-        // console.log(res.data)
         if (res.data.token) {
           localStorage.setItem('user', JSON.stringify(res.data))
           this.$router.push('/')
         }
-        // else {
-        //   // validation errors
-        //   let errors = null
-        //   for (let error of Object.values(res.data)) {
-        //     errors += ' ' + error
-        //   }
-        //   alert(errors)
-        // }
       }).catch(err => {
         if (err.response.status === 401) {
           alert('Erro! Usuário ou Senha Inválidos!')

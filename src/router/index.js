@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
 // publications
 import PublicationsList from '@/components/Publications/List'
 import PublicationsCreate from '@/components/Publications/Create'
@@ -15,7 +15,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/', name: 'HelloWorld', component: HelloWorld },
+    { path: '/', name: 'Home', component: Home },
     // publications
     { path: '/publications', name: 'PublicationsList', component: PublicationsList },
     { path: '/publications/new', name: 'PublicationsCreate', component: PublicationsCreate },

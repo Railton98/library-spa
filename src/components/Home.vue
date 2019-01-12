@@ -36,7 +36,7 @@
 import NavBarRoot from '@/components/layouts/NavBarRoot'
 import FooterRoot from '@/components/layouts/FooterRoot'
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   components: {
     NavBarRoot,
     FooterRoot

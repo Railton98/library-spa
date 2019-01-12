@@ -56,6 +56,7 @@ export default {
     sair () {
       localStorage.clear()
       this.user = false
+      this.$router.push('/')
     }
   }
 }

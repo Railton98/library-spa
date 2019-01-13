@@ -9,6 +9,7 @@ import PublicationUpdate from '@/components/Publications/Update'
 // users
 import UsersLogin from '@/components/Users/Login'
 import UsersRegister from '@/components/Users/Register'
+import ShowUser from '@/components/Users/ShowUser'
 
 Vue.use(Router)
 
@@ -23,6 +24,7 @@ export default new Router({
     { path: '/publication/:id/edit', name: 'PublicationUpdate', component: PublicationUpdate },
     // users
     { path: '/login', name: 'UsersLogin', component: UsersLogin },
+    { path: '/user', name: 'ShowUser', component: ShowUser },
     { path: '/register', name: 'UsersRegister', component: UsersRegister }
   ]
 })

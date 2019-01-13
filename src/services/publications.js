@@ -1,6 +1,6 @@
 import { http } from './config'
 
-function setToken (token) {
+export function setToken (token) {
   return {
     headers: {
       Authorization: `Bearer ${token}`

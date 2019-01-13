@@ -9,7 +9,9 @@
           <li><router-link to="/login">Login</router-link></li>
           <li><router-link to="/register">Cadastrar-se</router-link></li>
         </span>
-        <li v-if="user"><a>{{ user.user.name }}</a></li>
+        <li v-if="user">
+          <router-link to="/user">{{ user.user.name }}</router-link>
+        </li>
         <li v-if="user"><a @click="sair()">Sair</a></li>
       </nav-bar-root>
     </header>

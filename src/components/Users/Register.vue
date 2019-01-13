@@ -28,7 +28,7 @@
 
 <script>
 import AuthTemplate from '@/components/templates/AuthTemplate'
-import axios from 'axios'
+import UserService from '@/services/users'
 export default {
   name: 'UsersRegister',
   components: {
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     register () {
-      axios.post('http://localhost:8080/api/auth/register', this.user).then(res => {
+      UserService.register(this.user).then(res => {
         if (res.data.token) {
           localStorage.setItem('user', JSON.stringify(res.data))
           this.$router.push('/')

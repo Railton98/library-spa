@@ -11,7 +11,7 @@
 
       </div>
       <div class="row">
-        <form @submit.prevent.stop="storePublications" class="col s12">
+        <form @submit.prevent.stop="create" class="col s12">
           <div class="row">
             <div class="input-field col s12 m12 l10">
               <input v-model="publications.title" id="title" name="title" type="text" class="validate">
@@ -75,7 +75,7 @@
 
 <script>
 import PublicationTemplate from '@/components/templates/PublicationTemplate'
-import axios from 'axios'
+import Publications from '@/services/publications'
 export default {
   name: 'PublicationsCreate',
   components: {
@@ -83,17 +83,25 @@ export default {
   },
   data () {
     return {
-      publications: {}
+      publications: {},
+      token: ''
+    }
+  },
+  mounted () {
+    if (localStorage.getItem('user') === null) {
+      this.$router.push('/login')
     }
   },
   methods: {
-    storePublications () {
+    getToken () {
       let user = JSON.parse(localStorage.getItem('user'))
-      axios.post('http://localhost:8080/api/publications', this.publications, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      }).then(res => this.$router.push('/publications'))
+      this.token = user.token
+    },
+    create () {
+      this.getToken()
+      Publications.create(this.publications, this.token).then(res => {
+        this.$router.push('/publications')
+      })
     }
   }
 }

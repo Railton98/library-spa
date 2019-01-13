@@ -34,7 +34,7 @@
 
 <script>
 import PublicationTemplate from '@/components/templates/PublicationTemplate'
-import axios from 'axios'
+import Publications from '@/services/publications'
 export default {
   name: 'PublicationsList',
   components: {
@@ -42,21 +42,27 @@ export default {
   },
   data () {
     return {
-      publications: []
+      publications: [],
+      token: ''
     }
   },
   mounted () {
-    this.getPublications()
+    if (localStorage.getItem('user') === null) {
+      this.$router.push('/login')
+      return
+    }
+    this.list()
   },
   methods: {
-    async getPublications () {
+    getToken () {
       let user = JSON.parse(localStorage.getItem('user'))
-      const res = await axios.get('http://localhost:8080/api/publications', {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
+      this.token = user.token
+    },
+    list () {
+      this.getToken()
+      Publications.list(this.token).then(res => {
+        this.publications = res.data.data // 1º data -> Axios | 2º data -> Laravel
       })
-      this.publications = res.data.data // 1º data -> Axios | 2º data -> Laravel
     }
   }
 }

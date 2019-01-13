@@ -8,7 +8,7 @@
         </router-link>
       </div>
       <div class="row">
-        <form @submit.prevent.stop="updatePublication(publication.id)" class="col s12">
+        <form @submit.prevent.stop="update(publication.id)" class="col s12">
           <div class="row">
             <div class="input-field col s12 m12 l10">
               <input v-model="publication.title" id="title" name="title" type="text" class="validate">
@@ -65,7 +65,7 @@
 
 <script>
 import PublicationTemplate from '@/components/templates/PublicationTemplate'
-import axios from 'axios'
+import Publications from '@/services/publications'
 export default {
   name: 'PublicationUpdate',
   components: {
@@ -73,29 +73,33 @@ export default {
   },
   data () {
     return {
-      publication: {}
+      publication: {},
+      token: ''
     }
   },
   mounted () {
-    this.getPublication(this.$route.params.id)
+    if (localStorage.getItem('user') === null) {
+      this.$router.push('/login')
+      return
+    }
+    this.show(this.$route.params.id)
   },
   methods: {
-    async getPublication (id) {
+    getToken () {
       let user = JSON.parse(localStorage.getItem('user'))
-      const res = await axios.get(`http://localhost:8080/api/publications/${id}`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      })
-      this.publication = res.data.data // 1º data -> Axios | 2º data -> Laravel
+      this.token = user.token
     },
-    updatePublication (id) {
-      let user = JSON.parse(localStorage.getItem('user'))
-      axios.put(`http://localhost:8080/api/publications/${id}`, this.publication, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      }).then(res => this.$router.push(`/publication/${id}`))
+    show (id) {
+      this.getToken()
+      Publications.show(id, this.token).then(res => {
+        this.publication = res.data.data // 1º data -> Axios | 2º data -> Laravel
+      })
+    },
+    update (id) {
+      this.getToken()
+      Publications.update(id, this.publication, this.token).then(res => {
+        this.$router.push(`/publication/${id}`)
+      })
     }
   }
 }

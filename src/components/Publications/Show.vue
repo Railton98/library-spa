@@ -32,7 +32,7 @@
               <router-link :to="{ name:'PublicationUpdate', params: { user_id: publication.id }}" class="waves-effect waves-light btn blue">
                 <i class="material-icons">edit</i>
               </router-link>
-              <button @click="deletePublication(publication.id)" class="waves-effect waves-light btn red">
+              <button @click="destroy(publication.id)" class="waves-effect waves-light btn red">
                 <i class="material-icons">delete_forever</i>
               </button>
             </div>
@@ -51,7 +51,7 @@
 
 <script>
 import PublicationTemplate from '@/components/templates/PublicationTemplate'
-import axios from 'axios'
+import Publications from '@/services/publications'
 export default {
   name: 'PublicationShow',
   components: {
@@ -59,29 +59,31 @@ export default {
   },
   data () {
     return {
-      publication: []
+      publication: [],
+      token: ''
     }
   },
   mounted () {
-    this.getPublication(this.$route.params.id)
+    if (localStorage.getItem('user') === null) {
+      this.$router.push('/login')
+      return
+    }
+    this.show(this.$route.params.id)
   },
   methods: {
-    async getPublication (id) {
+    getToken () {
       let user = JSON.parse(localStorage.getItem('user'))
-      const res = await axios.get(`http://localhost:8080/api/publications/${id}`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      })
-      this.publication = res.data.data // 1º data -> Axios | 2º data -> Laravel
+      this.token = user.token
     },
-    deletePublication (id) {
-      let user = JSON.parse(localStorage.getItem('user'))
-      axios.delete(`http://localhost:8080/api/publications/${id}`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        }
-      }).then(res => {
+    show (id) {
+      this.getToken()
+      Publications.show(id, this.token).then(res => {
+        this.publication = res.data.data // 1º data -> Axios | 2º data -> Laravel
+      })
+    },
+    destroy (id) {
+      this.getToken()
+      Publications.delete(id, this.token).then(res => {
         this.$router.push('/publications')
       })
     }

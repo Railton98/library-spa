@@ -23,10 +23,20 @@
         </div>
         <h4>Funcionalidades</h4>
         <div class="col s12 m4 l4">
-          <li>teste</li>
-          <li>teste</li>
-          <li>teste</li>
-          <li>teste</li>
+          <strong>Usuário</strong>
+          <ul class="collection">
+            <li class="collection-item">Cadastro</li>
+            <li class="collection-item">Login</li>
+            <li class="collection-item">Detalhes</li>
+          </ul>
+          <strong>Publicações</strong>
+          <ul class="collection">
+            <li class="collection-item">Cadastro</li>
+            <li class="collection-item">Listagem</li>
+            <li class="collection-item">Detalhes</li>
+            <li class="collection-item">Atualização</li>
+            <li class="collection-item">Exclusão</li>
+          </ul>
         </div>
       </div>
     </div>
